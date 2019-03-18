@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/public/vendor/semantic/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="/public/vendor/semantic/semantic.min.js"></script>
+    <style>
+      textarea, .result { font-family: 'Roboto Mono'; }
+    </style>
+  </head>
+  <body>
+    <div class="ui borderless fixed main menu">
+      <div class="ui container">
+        <a class="header item" th:href="@{/}">
+          <span>Minischeme λ</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="ui container" style="margin-top:6em;">
+      <form th:action="@{/}" method="post" class="ui form" th:object="${command}">
+        <div class="ui grid">
+          <div class="eight wide column">
+            <div class="field">
+              <textarea th:field="*{source}"></textarea>
+            </div>
+          </div>
+          <div class="eight wide column">
+            <div class="ui stacked segment">
+              <h4 class="ui header">Résultat</h4>
+                <p th:if="${!#strings.isEmpty(flash_success)}" th:text="*{result}" class="result"></p>
+                <div th:if="${!#strings.isEmpty(flash_error)}" class="ui negative message">
+                  <p th:text="#{${flash_error}}"></p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <button class="ui purple labeled icon button" style="margin-top:1em;" type="submit">
+          <i class="play icon"></i> Évaluer l'expression
+        </button>
+      </form>
+  </body>
+</html>

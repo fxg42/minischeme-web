@@ -1,0 +1,38 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE")
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+  mavenCentral()
+}
+ 
+sourceCompatibility = '1.11'
+targetCompatibility = '1.11'
+
+bootRun {
+  sourceResources(sourceSets.main)
+  systemProperties = System.properties
+  jvmArgs= ["-Xms512M", "-Xmx1024M"]
+}
+
+dependencies {
+  // web development
+  compile("org.springframework.boot:spring-boot-starter-web")
+  compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+  // language extensions
+  compileOnly("org.projectlombok:lombok:1.18.2")
+  annotationProcessor("org.projectlombok:lombok:1.18.2")
+
+  // development tools
+  compile("org.springframework.boot:spring-boot-devtools")
+}
