@@ -16,6 +16,16 @@
         <a class="header item" th:href="@{/}">
           <span>Minischeme λ</span>
         </a>
+        <div class="ui dropdown item">
+          Exemples
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item">addition.minischeme</div>
+            <div class="item">aire-cercle.minischeme</div>
+            <div class="item">somme-liste.minischeme</div>
+            <div class="item">compose.minischeme</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -45,5 +55,63 @@
         </button>
       </form>
     </div>
+<script>
+const addition =
+`(+ 1 2)`;
+
+const aireCercle =
+`(begin
+
+  (define pi 3.141592)
+
+  (define aire-cercle (lambda (r)
+    (* pi r r)))
+  
+  (aire-cercle 10))`;
+
+const sommeListe =
+`(begin
+  
+  (define do-sum (lambda (xs resultat)
+    (if (< (count xs) 1)
+      resultat
+      (do-sum (tail xs) (+ resultat (head xs))))))
+  
+  (define sum (lambda (xs)
+    (do-sum xs 0)))
+
+  (sum (list 1 2 3 4 5)))
+`;
+
+const compose =
+`(begin
+
+  (define add1 (lambda (n)
+    (+ n 1)))
+
+  (define mul3 (lambda (n)
+    (* n 3)))
+
+  (define compose (lambda (f g)
+    (lambda (n)
+      (f (g n)))))
+
+  (define mul3add1 (compose add1 mul3))
+  (mul3add1 10))
+`;
+
+const exemples = {
+  "addition.minischeme": addition,
+  "aire-cercle.minischeme": aireCercle,
+  "somme-liste.minischeme": sommeListe,
+  "compose.minischeme": compose
+};
+
+$('.ui.dropdown').dropdown({
+  onChange: (value, text) => {
+    $('textarea').val(exemples[text]);
+  }
+});
+</script>
   </body>
 </html>
