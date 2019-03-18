@@ -20,10 +20,10 @@
           Exemples
           <i class="dropdown icon"></i>
           <div class="menu">
-            <div class="item">addition.minischeme</div>
-            <div class="item">aire-cercle.minischeme</div>
-            <div class="item">somme-liste.minischeme</div>
-            <div class="item">compose.minischeme</div>
+            <div class="item" data-value="0">addition.minischeme</div>
+            <div class="item" data-value="1">aire-cercle.minischeme</div>
+            <div class="item" data-value="2">somme-liste.minischeme</div>
+            <div class="item" data-value="3">compose.minischeme</div>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
           </div>
           <div class="eight wide column">
             <div class="ui stacked segment" style="height: 100%">
-              <h4 class="ui header">Résultat</h4>
+              <h4 class="ui header">Résultat ></h4>
               <p th:if="${!#strings.isEmpty(flash_success)}" th:text="*{result}" class="result"></p>
               <div th:if="${!#strings.isEmpty(flash_error)}" class="ui negative message">
                 <p th:text="#{${flash_error}}"></p>
@@ -112,6 +112,10 @@ $('.ui.dropdown').dropdown({
     $('textarea').val(exemples[text]);
   }
 });
+
+if (! $('texararea').val()) {
+  $('.ui.dropdown').dropdown('set selected', ""+Math.floor(Math.random() * 4));
+}
 </script>
   </body>
 </html>

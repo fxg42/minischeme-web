@@ -23,9 +23,7 @@ public class EvaluatorController {
   @GetMapping
   public String show(final Model model) {
     if (! model.containsAttribute("command")) {
-      final var command = new RunCommand();
-      command.setSource("(+ 1 2)");
-      model.addAttribute("command", command);
+      model.addAttribute("command", new RunCommand());
     }
     return "show";
   }
