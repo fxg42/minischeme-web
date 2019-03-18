@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="/public/vendor/semantic/semantic.min.js"></script>
     <style>
-      textarea, .result { font-family: 'Roboto Mono'; }
+      textarea, .result { font-family: 'Roboto Mono', monospace; }
     </style>
   </head>
   <body>
@@ -23,23 +23,27 @@
       <form th:action="@{/}" method="post" class="ui form" th:object="${command}">
         <div class="ui grid">
           <div class="eight wide column">
-            <div class="field">
-              <textarea th:field="*{source}"></textarea>
+            <div class="ui stacked segment">
+              <h4 class="ui header">Source λ</h4>
+              <div class="field">
+                <textarea th:field="*{source}" rows="15"></textarea>
+              </div>
             </div>
           </div>
           <div class="eight wide column">
-            <div class="ui stacked segment">
+            <div class="ui stacked segment" style="height: 100%">
               <h4 class="ui header">Résultat</h4>
-                <p th:if="${!#strings.isEmpty(flash_success)}" th:text="*{result}" class="result"></p>
-                <div th:if="${!#strings.isEmpty(flash_error)}" class="ui negative message">
-                  <p th:text="#{${flash_error}}"></p>
-                </div>
+              <p th:if="${!#strings.isEmpty(flash_success)}" th:text="*{result}" class="result"></p>
+              <div th:if="${!#strings.isEmpty(flash_error)}" class="ui negative message">
+                <p th:text="#{${flash_error}}"></p>
+              </div>
             </div>
           </div>
         </div>
         <button class="ui purple labeled icon button" style="margin-top:1em;" type="submit">
-          <i class="play icon"></i> Évaluer l'expression
+          <i class="play icon"></i> Évaluer
         </button>
       </form>
+    </div>
   </body>
 </html>
