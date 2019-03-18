@@ -14,10 +14,10 @@
     <div class="ui borderless fixed main menu">
       <div class="ui container">
         <a class="header item" th:href="@{/}">
-          <span>Minischeme λ</span>
+          <span th:text="#{header_menu_title}"></span>
         </a>
         <div class="ui dropdown item">
-          Exemples
+          <span th:text="#{header_menu_example_dropdown_title}"></span>
           <i class="dropdown icon"></i>
           <div class="menu">
             <div class="item" data-value="0">addition.minischeme</div>
@@ -34,7 +34,7 @@
         <div class="ui grid">
           <div class="eight wide column">
             <div class="ui stacked segment">
-              <h4 class="ui header">Source λ</h4>
+              <h4 class="ui header" th:text="#{source_segment_header}"></h4>
               <div class="field">
                 <textarea th:field="*{source}" rows="15"></textarea>
               </div>
@@ -42,7 +42,7 @@
           </div>
           <div class="eight wide column">
             <div class="ui stacked segment" style="height: 100%">
-              <h4 class="ui header">Résultat ></h4>
+              <h4 class="ui header" th:text="#{result_segment_header}"></h4>
               <p th:if="${!#strings.isEmpty(flash_success)}" th:text="*{result}" class="result"></p>
               <div th:if="${!#strings.isEmpty(flash_error)}" class="ui negative message">
                 <p th:text="#{${flash_error}}"></p>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <button class="ui purple labeled icon button" style="margin-top:1em;" type="submit">
-          <i class="play icon"></i> Évaluer
+          <i class="play icon"></i> <span th:text="#{evaluate_button_label}"></span>
         </button>
       </form>
     </div>
