@@ -62,7 +62,11 @@ const addition =
 const aireCercle =
 `(begin
 
+  ;; Definition de la constante PI
+
   (define pi 3.141592)
+
+  ;; Calcul l'aire d'un cercle étant donné son rayon.
 
   (define aire-cercle (lambda (r)
     (* pi r r)))
@@ -72,6 +76,9 @@ const aireCercle =
 const sommeListe =
 `(begin
   
+  ;; Calcul tail-recursive de la somme des
+  ;; éléments d'une liste.
+
   (define do-sum (lambda (xs resultat)
     (if (< (count xs) 1)
       resultat
@@ -97,7 +104,7 @@ const compose =
 
   (define mul3add1 (compose add1 mul3))
 
-  (mul3add1 10))`;
+  (mul3add1 10)) ;; appelle add1(mul3(10)) => 31`;
 
 const exemples = {
   "addition.minischeme": addition,
