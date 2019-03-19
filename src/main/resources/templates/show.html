@@ -79,13 +79,13 @@ const sommeListe =
   ;; Calcul tail-recursive de la somme des
   ;; éléments d'une liste.
 
-  (define do-sum (lambda (xs resultat)
+  (define fold (lambda (f acc xs)
     (if (< (count xs) 1)
-      resultat
-      (do-sum (tail xs) (+ resultat (head xs))))))
+      acc
+      (fold f (f acc (head xs)) (tail xs)))))
   
   (define sum (lambda (xs)
-    (do-sum xs 0)))
+    (fold + 0 xs)))
 
   (sum (list 1 2 3 4 5)))`;
 
