@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/")
+@lombok.extern.slf4j.Slf4j
 public class EvaluatorController {
 
   @GetMapping
@@ -45,8 +46,10 @@ public class EvaluatorController {
 
     try {
       final var source = command.getSource();
-      final var evaluationResult = "À IMPLÉMENTER 🤔";
-      command.setResult(evaluationResult);
+      log.info("CODE SOURCE RECU: <{}>", source);
+
+      final var result = "À FAIRE 🤔";
+      command.setResult(result);
 
       redirectAttributes
         .addFlashAttribute("flash_success", "run_evaluation_flash_success_message")
@@ -67,6 +70,10 @@ public class EvaluatorController {
 @lombok.NoArgsConstructor
 class RunCommand implements Serializable {
 
-  @NotBlank @NotNull private String source = "";
-  @NotNull private String result = "";
+  @NotBlank
+  @NotNull
+  private String source = "";
+  
+  @NotNull
+  private String result = "";
 }

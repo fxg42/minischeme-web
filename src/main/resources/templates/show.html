@@ -80,8 +80,7 @@ const sommeListe =
   (define sum (lambda (xs)
     (do-sum xs 0)))
 
-  (sum (list 1 2 3 4 5)))
-`;
+  (sum (list 1 2 3 4 5)))`;
 
 const compose =
 `(begin
@@ -97,8 +96,8 @@ const compose =
       (f (g n)))))
 
   (define mul3add1 (compose add1 mul3))
-  (mul3add1 10))
-`;
+
+  (mul3add1 10))`;
 
 const exemples = {
   "addition.minischeme": addition,
