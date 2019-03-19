@@ -109,6 +109,7 @@ const exemples = {
 $('.ui.dropdown').dropdown({
   onChange: (value, text) => {
     $('textarea').val(exemples[text]);
+    $('p.result').html('');
   }
 });
 
