@@ -19,13 +19,6 @@
         <div class="ui dropdown item">
           <span th:text="#{header_menu_example_dropdown_title}"></span>
           <i class="dropdown icon"></i>
-          <div class="menu">
-            <div class="item" data-value="0">addition.minischeme</div>
-            <div class="item" data-value="1">aire-cercle.minischeme</div>
-            <div class="item" data-value="2">somme-liste.minischeme</div>
-            <div class="item" data-value="3">compose.minischeme</div>
-            <div class="item" data-value="4">not-liste.minischeme</div>
-          </div>
         </div>
       </div>
     </div>
@@ -57,91 +50,18 @@
       </form>
     </div>
 <script>
-const addition =
-`(+ 1 2)`;
-
-const aireCercle =
-`(begin
-
-  ;; Definition de la constante PI
-
-  (define pi 3.141592)
-
-  ;; Calcul l'aire d'un cercle étant donné son rayon.
-
-  (define aire-cercle (lambda (r)
-    (* pi r r)))
-  
-  (aire-cercle 10))`;
-
-const sommeListe =
-`(begin
-  
-  ;; Calcul tail-recursive de la somme des
-  ;; éléments d'une liste.
-
-  (define fold (lambda (f z xs)
-    (if (< (count xs) 1)
-      z
-      (fold f (f z (head xs)) (tail xs)))))
-  
-  (define sum (lambda (xs)
-    (fold + 0 xs)))
-
-  (sum (list 1 2 3 4 5)))`;
-
-const compose =
-`(begin
-
-  (define add1 (lambda (n)
-    (+ n 1)))
-
-  (define mul3 (lambda (n)
-    (* n 3)))
-
-  (define compose (lambda (f g)
-    (lambda (n)
-      (f (g n)))))
-
-  (define mul3add1 (compose add1 mul3))
-
-  (mul3add1 10)) ;; appelle add1(mul3(10)) => 31`;
-
-const notListe =
-`(begin
-
-  (define fold (lambda (f z xs)
-    (if (< (count xs) 1)
-      z
-      (fold f (f z (head xs)) (tail xs)))))
-
-  (define fmap (lambda (f xs)
-    (fold (lambda (ys x) (append ys (list (f x))))
-          (list)
-          xs)))
-  
-  ;; applique la fonction not à tous les éléments
-
-  (fmap not (list #t #f #t)))`;
-
-const exemples = {
-  "addition.minischeme": addition,
-  "aire-cercle.minischeme": aireCercle,
-  "somme-liste.minischeme": sommeListe,
-  "compose.minischeme": compose,
-  "not-liste.minischeme": notListe
-};
-
 $('.ui.dropdown').dropdown({
+  apiSettings: {
+    url: '/examples',
+    filterRemoteData: true
+  },
   onChange: (value, text) => {
-    $('textarea').val(exemples[text]);
-    $('p.result').html('');
+    $.get(value, (program) => {
+      $('textarea').val(program);
+      $('p.result').html('');
+    });
   }
 });
-
-if (! $('textarea').val()) {
-  $('.ui.dropdown').dropdown('set selected', ""+Math.floor(Math.random() * 5));
-}
 </script>
   </body>
 </html>

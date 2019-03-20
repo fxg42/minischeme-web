@@ -1,0 +1,15 @@
+(begin
+
+  (define fold (lambda (f z xs)
+    (if (< (count xs) 1)
+        z
+        (fold f (f z (head xs)) (tail xs)))))
+
+  (define fmap (lambda (f xs)
+    (fold (lambda (ys x) (append ys (list (f x))))
+          (list)
+          xs)))
+  
+  ;; applique la fonction not à tous les éléments
+
+  (fmap not (list #t #f #t)))

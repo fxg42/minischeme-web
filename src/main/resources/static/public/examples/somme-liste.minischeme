@@ -1,0 +1,14 @@
+(begin
+  
+  ;; Calcul tail-recursive de la somme des
+  ;; éléments d'une liste.
+
+  (define fold (lambda (f z xs)
+    (if (< (count xs) 1)
+        z
+        (fold f (f z (head xs)) (tail xs)))))
+  
+  (define sum (lambda (xs)
+    (fold + 0 xs)))
+
+  (sum (list 1 2 3 4 5)))

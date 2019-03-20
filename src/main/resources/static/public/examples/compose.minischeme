@@ -1,0 +1,14 @@
+(begin
+
+  (define add1 (lambda (n)
+    (+ n 1)))
+
+  (define mul3 (lambda (n)
+    (* n 3)))
+
+  (define compose (lambda (f g)
+    (lambda (n) (f (g n)))))
+
+  (define mul3add1 (compose add1 mul3))
+
+  (mul3add1 10)) ;; appelle add1(mul3(10)) => 31

@@ -1,0 +1,12 @@
+(begin
+
+  ;; Definition de la constante PI
+
+  (define pi 3.141592)
+
+  ;; Calcul l'aire d'un cercle étant donné son rayon.
+
+  (define aire-cercle (lambda (r)
+    (* pi r r)))
+  
+  (aire-cercle 10))
