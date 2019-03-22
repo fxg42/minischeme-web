@@ -18,12 +18,6 @@ repositories {
 sourceCompatibility = '1.11'
 targetCompatibility = '1.11'
 
-bootRun {
-  sourceResources(sourceSets.main)
-  systemProperties = System.properties
-  jvmArgs= ["-Xms512M", "-Xmx1024M"]
-}
-
 dependencies {
   // web development
   compile("org.springframework.boot:spring-boot-starter-web")
