@@ -24,7 +24,7 @@ public class ExamplesController {
 
   @GetMapping("/listing")
   public ResponseEntity<SemanticDropdownResponse> list() throws Exception {
-     final var found = Files.list(new ClassPathResource("static/public/examples").getFile().toPath())
+    final var found = Files.list(new ClassPathResource("static/public/examples").getFile().toPath())
       .filter(not(Files::isDirectory))
       .filter(not(unchecked(Files::isHidden)))
       .map(SemanticDropdownResponseItem::new)
